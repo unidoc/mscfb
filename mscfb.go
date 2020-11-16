@@ -331,6 +331,16 @@ func (r *Reader) Next() (*File, error) {
 	return r.File[r.entry], nil
 }
 
+// GetEntry finds the entry for given entry name
+func (r *Reader) GetEntry(entryName string) (*File, error) {
+	for entry, err := r.Next(); err == nil; entry, err = r.Next() {
+		if entry.Name == entryName {
+			return entry, nil
+		}
+	}
+	return nil, Error{ErrTraverse, "No entry found for given name.", 0}
+}
+
 // Read the current directory entry
 func (r *Reader) Read(b []byte) (n int, err error) {
 	if r.entry >= len(r.File) {
