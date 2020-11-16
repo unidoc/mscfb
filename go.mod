@@ -1,4 +1,4 @@
-module github.com/richardlehane/mscfb
+module github.com/unidoc/mscfb
 
 go 1.15
 
